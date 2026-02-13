@@ -1,0 +1,21 @@
+public final class Supply implements Comparable<Supply> {
+    private final String name;
+    private final String type;
+    private final double weight;
+    private final int value;
+
+    public Supply(String name, String type, double weight, int value) {
+        this.name = name;
+        this.type = type;
+        this.weight = weight;
+        this.value = value;
+    }
+
+    public int compareTo(Supply other) {
+        return this.name.compareTo(other.name) == 0 ? (int)(this.weight - other.weight) : this.name.compareTo(other.name);
+    }
+
+    public String toString() {
+        return "[" + this.type + "] " + this.name + " (" + this.weight + " lbs) - Val: " + this.value;
+    }
+}

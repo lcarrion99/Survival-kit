@@ -1,0 +1,99 @@
+public class BST<T extends Comparable<T>> {
+    private Node<T> root;
+
+    public boolean contains(T x) {
+        return this.contains(this.root, x);
+    }
+
+    private boolean contains(Node<T> n, T x) {
+        if (n == null) {
+            return false;
+        } else {
+            int cmp = x.compareTo((Comparable)n.data);
+            if (cmp == 0) {
+                return true;
+            } else {
+                return cmp < 0 ? this.contains(n.left, x) : this.contains(n.right, x);
+            }
+        }
+    }
+
+    public void insert(T x) {
+        this.root = this.insert(this.root, x);
+    }
+
+    private Node<T> insert(Node<T> n, T x) {
+        if (n == null) {
+            return new Node<T>(x);
+        } else {
+            int cmp = x.compareTo((Comparable)n.data);
+            if (cmp < 0) {
+                n.left = this.insert(n.left, x);
+            } else {
+                if (cmp <= 0) {
+                    return n;
+                }
+
+                n.right = this.insert(n.right, x);
+            }
+
+            return n;
+        }
+    }
+
+    public void printInorder() {
+        this.printInorder(this.root);
+    }
+
+    private void printInorder(Node<T> n) {
+        if (n != null) {
+            if (n.left != null) {
+                this.printInorder(n.left);
+            }
+
+            System.out.println(n.data);
+            if (n.right != null) {
+                this.printInorder(n.right);
+            }
+
+        }
+    }
+
+    public void printPreorder(Node<T> n) {
+        if (n != null) {
+            System.out.println(n.data);
+            if (n.left != null) {
+                this.printPreorder(n.left);
+            }
+
+            if (n.right != null) {
+                this.printPreorder(n.right);
+            }
+
+        }
+    }
+
+    public void printPostorder(Node<T> n) {
+        if (n != null) {
+            if (n.left != null) {
+                this.printPostorder(n.left);
+            }
+
+            if (n.right != null) {
+                this.printPostorder(n.right);
+            }
+
+            System.out.println(n.data);
+        }
+    }
+
+    private static class Node<E> {
+        E data;
+        Node<E> left;
+        Node<E> right;
+
+        Node(E d) {
+            this.data = d;
+        }
+    }
+}

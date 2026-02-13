@@ -1,0 +1,23 @@
+public class Main {
+    public static void main(String[] args) {
+        BST<Supply> backpack = new BST();
+        backpack.insert(new Supply("Machete", "Weapon", (double)2.5F, 10));
+        backpack.insert(new Supply("Water", "Drink", 0.8, 15));
+        backpack.insert(new Supply("Antibiotics", "Medical", 0.1, 20));
+        backpack.insert(new Supply("Bandages", "Medical", (double)0.5F, 18));
+        backpack.insert(new Supply("Radio", "Item", (double)1.5F, 19));
+        backpack.insert(new Supply("Map", "Item", 0.2, 11));
+        backpack.insert(new Supply("First Aid Kit", "Medical", (double)2.0F, 20));
+        backpack.insert(new Supply("Compass", "Item", 0.8, 12));
+        backpack.insert(new Supply("Rope", "Item", (double)4.0F, 16));
+        backpack.insert(new Supply("Batteries", "Item", (double)3.0F, 20));
+        if (backpack.contains(new Supply("Water", "", (double)0.0F, 0))) {
+            System.out.println("Found Water in backpack");
+        } else {
+            System.out.println("Water not found");
+        }
+
+        System.out.println("--- ZOMBIE SURVIVAL INVENTORY ---");
+        backpack.printInorder();
+    }
+}
